@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D6A343482E994BB600C16277 /* SkinRoutineTracker */ = {
+		D6A3437C2E99530C00C16277 /* SkinRoutineTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SkinRoutineTracker;
 			sourceTree = "<group>";
@@ -32,7 +32,7 @@
 		D6A3433D2E994BB600C16277 = {
 			isa = PBXGroup;
 			children = (
-				D6A343482E994BB600C16277 /* SkinRoutineTracker */,
+				D6A3437C2E99530C00C16277 /* SkinRoutineTracker */,
 				D6A343472E994BB600C16277 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				D6A343482E994BB600C16277 /* SkinRoutineTracker */,
+				D6A3437C2E99530C00C16277 /* SkinRoutineTracker */,
 			);
 			name = SkinRoutineTracker;
 			packageProductDependencies = (
