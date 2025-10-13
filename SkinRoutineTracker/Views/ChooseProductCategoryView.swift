@@ -9,102 +9,92 @@
 import SwiftUI
 
 struct ChooseProductCategoryView: View {
-    @State private var selectedCategory: String? = nil
+    @State private var selectedType: String? = nil
     
-    // Örnek kategori verileri
-    let commonCategories = ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen"]
-    let moreCategories = ["Mask", "Exfoliator", "Oil", "Spot Treatment", "Eye Cream"]
+    let commonForms = ["Capsule", "Tablet", "Liquid", "Topical"]
+    let moreForms = ["Cream", "Device", "Drops", "Foam"]
     
     var body: some View {
-        VStack(spacing: 30) {
-            ScrollView{
-                // Başlık
-                VStack(spacing: 8) {
-                    Image(systemName: "sparkles") // geçici simge
-                        .font(.system(size: 40))
-                        .foregroundColor(.blue)
-                    Text("Choose Product Category")
-                        .font(.title3.bold())
-                        .foregroundColor(.white)
-                }
-                .padding(.top, 60)
+            VStack(spacing: 40) {
                 
-                // Common Categories
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Common Categories")
-                        .foregroundColor(.gray)
-                        .font(.subheadline)
-                        .padding(.horizontal, 20)
+                ScrollView {
+                    Image(systemName: "drop.fill") // geçici simge
+                        .font(.system(size: 50))
+                        .foregroundColor(.background)
+                        .padding(.top, 40)
                     
-                    ForEach(commonCategories, id: \.self) { category in
-                        CategoryRow(title: category, isSelected: selectedCategory == category)
-                            .onTapGesture {
-                                selectedCategory = category
-                            }
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Choose the Medication Type")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 32)
+                        
+                        // Common Forms Section
+                        SectionView(title: "Common Forms", items: commonForms, selected: $selectedType)
+                            .padding(.horizontal)
+                        
+                        // More Forms Section
+                        SectionView(title: "More Forms", items: moreForms, selected: $selectedType)
+                            .padding(.horizontal)
+                        
+                        // Next Button
                     }
-                }
-                
-                // More Categories
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("More Categories")
-                        .foregroundColor(.gray)
-                        .font(.subheadline)
-                        .padding(.horizontal, 20)
+                    .padding(.vertical)
                     
-                    ForEach(moreCategories, id: \.self) { category in
-                        CategoryRow(title: category, isSelected: selectedCategory == category)
-                            .onTapGesture {
-                                selectedCategory = category
-                            }
-                    }
                 }
-                
-                Spacer()
-                
-                // Next Button
                 Button(action: {
-                    print("Next tapped with: \(selectedCategory ?? "")")
+                    print("Next tapped: \(selectedType ?? "")")
                 }) {
                     Text("Next")
-                        .font(.headline)
-                        .foregroundColor(.white)
+                        .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(selectedCategory == nil ? Color.gray.opacity(0.3) : Color.blue)
-                        .cornerRadius(12)
-                        .padding(.horizontal, 32)
+                        .background(selectedType != nil ? Color.background : Color.primaryAccent)
+                        .foregroundColor(.white)
+                        .cornerRadius(25)
                 }
-                .disabled(selectedCategory == nil)
-                .padding(.bottom, 40)
+                .padding(.horizontal, 30)
+                .disabled(selectedType == nil)
+                
             }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black.ignoresSafeArea())
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.secondaryAccent.ignoresSafeArea())
     }
 }
 
-// MARK: - Category Row Component
-struct CategoryRow: View {
+struct SectionView: View {
     let title: String
-    let isSelected: Bool
+    let items: [String]
+    @Binding var selected: String?
     
     var body: some View {
-        HStack {
+        VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .foregroundColor(.white)
-                .padding()
-            Spacer()
-            if isSelected {
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.blue)
-                    .padding(.trailing, 12)
+                .font(.subheadline)
+                .padding(.horizontal, 30)
+            
+            VStack(spacing: 10) {
+                ForEach(items, id: \.self) { item in
+                    Button(action: { selected = item }) {
+                        HStack {
+                            Text(item)
+                                .foregroundColor(.white)
+                            Spacer()
+                            if selected == item {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(Color.background)
+                            }
+                        }
+                        .padding()
+                        .background(Color.primaryAccent)
+                        .cornerRadius(25)
+                    }
+                }
             }
+            .padding(.horizontal)
         }
-        .frame(maxWidth: .infinity)
-        .background(Color(.systemGray6).opacity(0.15))
-        .cornerRadius(10)
-        .padding(.horizontal, 20)
-        .animation(.easeInOut, value: isSelected)
     }
 }
 

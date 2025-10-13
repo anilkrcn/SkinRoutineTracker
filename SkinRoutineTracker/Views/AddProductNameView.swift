@@ -12,50 +12,54 @@ struct AddProductNameView: View {
     @State private var productName: String = ""
     
     var body: some View {
-        VStack(spacing: 40) {
-            
-            // Üstte ikon veya küçük başlık
-            VStack(spacing: 8) {
+        NavigationStack{
+            VStack(spacing: 40) {
+                
                 Image(systemName: "drop.fill") // geçici simge
                     .font(.system(size: 50))
-                    .foregroundColor(.blue)
-                Text("Product Name")
-                    .font(.title2.bold())
-                    .foregroundColor(.white)
-            }
-            .padding(.top, 80)
-            
-            // TextField
-            TextField("Add product name", text: $productName)
+                    .foregroundColor(.background)
+                    .padding(.top, 80)
+                // Üstte ikon veya küçük başlık
+                VStack(alignment: .leading) {
+                    Text("Product Name")
+                        .font(.title2.bold())
+                        .foregroundColor(.white)
+                        .padding(.leading, 30)
+                    TextField("Add Product Name", text: $productName)
+                        .padding()
+                        .background(Color.primaryAccent)
+                        .cornerRadius(25)
+                        .foregroundColor(.white)
+                        .padding(.horizontal)
+                    
+                }
                 .padding()
-                .background(Color(.systemGray6).opacity(0.2))
-                .cornerRadius(10)
-                .foregroundColor(.white)
-                .padding(.horizontal, 32)
-            
-            Spacer()
-            
-            // Next Button
-            Button(action: {
-                print("Next tapped with: \(productName)")
-            }) {
-                Text("Next")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(productName.isEmpty ? Color.gray.opacity(0.3) : Color.blue)
-                    .cornerRadius(12)
-                    .padding(.horizontal, 32)
+                
+                // TextField
+                
+                Spacer()
+                
+                // Next Button
+                
+                    NavigationLink(destination: ChooseProductCategoryView()){
+                    Text("Next")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(productName.isEmpty ? Color.primaryAccent : Color.background)
+                        .cornerRadius(25)
+                        .padding(.horizontal, 32)
+                }
+                .disabled(productName.isEmpty)
+                .padding(.bottom, 40)
             }
-            .disabled(productName.isEmpty)
-            .padding(.bottom, 40)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.secondaryAccent.ignoresSafeArea())
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black.ignoresSafeArea())
     }
 }
 
-#Preview {
+#Preview{
     AddProductNameView()
 }
