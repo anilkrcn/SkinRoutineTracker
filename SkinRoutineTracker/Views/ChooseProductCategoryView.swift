@@ -18,9 +18,12 @@ struct ChooseProductCategoryView: View {
             VStack(spacing: 40) {
                 
                 ScrollView {
-                    Image(systemName: "drop.fill") // geçici simge
-                        .font(.system(size: 50))
+                    Image("cream") // geçici simge
+                        .resizable()
+                        .renderingMode(.template)
                         .foregroundColor(.background)
+                        .scaledToFit()
+                        .frame(width: 120, height: 120)
                         .padding(.top, 40)
                     
                     VStack(alignment: .leading, spacing: 20) {
@@ -43,9 +46,7 @@ struct ChooseProductCategoryView: View {
                     .padding(.vertical)
                     
                 }
-                Button(action: {
-                    print("Next tapped: \(selectedType ?? "")")
-                }) {
+                NavigationLink(destination: AddProductAmountView()){
                     Text("Next")
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)

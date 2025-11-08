@@ -15,9 +15,12 @@ struct AddProductNameView: View {
         NavigationStack{
             VStack(spacing: 40) {
                 
-                Image(systemName: "drop.fill") // geçici simge
-                    .font(.system(size: 50))
+                Image("skincare") // geçici simge
+                    .resizable()
+                    .renderingMode(.template)
                     .foregroundColor(.background)
+                    .scaledToFit()
+                    .frame(width: 120, height: 120)
                     .padding(.top, 80)
                 // Üstte ikon veya küçük başlık
                 VStack(alignment: .leading) {
