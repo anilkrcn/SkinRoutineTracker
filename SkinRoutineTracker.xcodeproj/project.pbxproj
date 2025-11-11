@@ -10,9 +10,37 @@
 		D6A343462E994BB600C16277 /* SkinRoutineTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkinRoutineTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D644A38E2EC3C946005CBDB5 /* Exceptions for "SkinRoutineTracker" folder in "SkinRoutineTracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Extensions/ProductExtension.swift,
+				Extensions/ProductPlanExtension.swift,
+				Extensions/TransformableExtension.swift,
+			);
+			target = D6A343452E994BB600C16277 /* SkinRoutineTracker */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		D644A38F2EC3C946005CBDB5 /* Exceptions for "SkinRoutineTracker" folder in "Copy Bundle Resources" phase from "SkinRoutineTracker" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = D6A343442E994BB600C16277 /* Resources */;
+			membershipExceptions = (
+				Extensions/ProductExtension.swift,
+				Extensions/ProductPlanExtension.swift,
+				Extensions/TransformableExtension.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D6A3437C2E99530C00C16277 /* SkinRoutineTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D644A38E2EC3C946005CBDB5 /* Exceptions for "SkinRoutineTracker" folder in "SkinRoutineTracker" target */,
+				D644A38F2EC3C946005CBDB5 /* Exceptions for "SkinRoutineTracker" folder in "Copy Bundle Resources" phase from "SkinRoutineTracker" target */,
+			);
 			path = SkinRoutineTracker;
 			sourceTree = "<group>";
 		};
