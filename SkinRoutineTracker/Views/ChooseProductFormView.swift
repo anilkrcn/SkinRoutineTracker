@@ -1,11 +1,3 @@
-//
-//  ChooseProductFormView.swift
-//  SkinRoutineTracker
-//
-//  Created by Anıl Karacan on 11.10.2025.
-//
-
-
 import SwiftUI
 
 struct ChooseProductFormView: View {
@@ -68,7 +60,7 @@ struct ChooseProductFormView: View {
             Spacer()
             
             // Next Button
-            NavigationLink(destination: AddProductAmountView()){
+            NavigationLink(destination: SetRoutineFrequencyView()){
                 Text("Next")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity)

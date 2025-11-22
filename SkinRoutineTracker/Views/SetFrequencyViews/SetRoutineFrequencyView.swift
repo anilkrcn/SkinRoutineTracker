@@ -1,49 +1,66 @@
-//
-//  SetRoutineFrequencyView.swift
-//  SkinRoutineTracker
-//
-//  Created by Anıl Karacan on 11.10.2025.
-//
-
 
 import SwiftUI
 
 struct SetRoutineFrequencyView: View {
     @State private var selectedFrequency: String? = nil
     @State private var selectedTimes: Set<String> = []
+    @State var isPresented: Bool = false
     
     let frequencies = ["Daily", "Every 2 Days", "Weekly", "Custom"]
     let timeOptions = ["Morning", "Evening", "Both"]
     
     var body: some View {
         VStack(spacing: 30) {
-            
             // Başlık
             VStack(spacing: 8) {
-                Image(systemName: "clock.fill")
-                    .font(.system(size: 40))
-                    .foregroundColor(.blue)
-                Text("Set Routine Frequency")
-                    .font(.title3.bold())
-                    .foregroundColor(.white)
+                Image(systemName: "clock.fill") // geçici simge
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(.background)
+                    .scaledToFit()
+                    .frame(width: 120, height: 120)
+                    .padding(.top, 40)
+                VStack(alignment: .leading) {
+                    Text("Set Routine Frequency")
+                        .font(.title2.bold())
+                        .foregroundColor(.white)
+                        //.padding(.horizontal, 32)
+                }
             }
             .padding(.top, 60)
             
             // Frequency Selection
-            VStack(alignment: .leading, spacing: 10) {
-                Text("How often do you use this product?")
+            LazyVStack(alignment: .leading){
+                Text("Kullanma sıklığınızı seçiniz:")
                     .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .padding(.horizontal, 20)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color.white)
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 5)
                 
-                ForEach(frequencies, id: \.self) { frequency in
-                    FrequencyRow(title: frequency, isSelected: selectedFrequency == frequency)
-                        .onTapGesture {
-                            withAnimation {
-                                selectedFrequency = frequency
-                            }
+                
+                HStack{
+                    Text("Her gün")
+                        .foregroundStyle(Color.white)
+                        .padding()
+                    
+                    Spacer()
+                    
+                    Button("Değiştir"){
+                        isPresented = true
+                    }.foregroundStyle(Color.background)
+                    .padding(.trailing)
+                    .sheet(isPresented: $isPresented){
+                        NavigationStack{
+                            FrequencyView()
                         }
-                }
+                    }
+                    
+                }.frame(maxWidth: .infinity)
+                    .background(Color.primaryAccent)
+                    .cornerRadius(25)
+                    .padding(.horizontal, 20)
+                    
             }
             
             // Time of Day
@@ -87,7 +104,7 @@ struct SetRoutineFrequencyView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black.ignoresSafeArea())
+        .background(Color.secondaryAccent.ignoresSafeArea())
     }
 }
 

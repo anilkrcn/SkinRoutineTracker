@@ -11,9 +11,9 @@ struct ProductPlanModel: Codable {
     var id: UUID
     var planType: PlanType
     var reminderTimes: [String]?
-    var periodDays: Int?
-    var breakDays: Int?
+    var periodDays: Int16?
+    var breakDays: Int16?
     var selectedDays: [String]?
-    var intervalDays: Int?
+    var intervalDays: Int16?
     var createdAt: Date = Date()
 }

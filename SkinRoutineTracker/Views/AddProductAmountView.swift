@@ -75,7 +75,7 @@ struct AddProductAmountView: View {
                             .padding(.horizontal, 32)
                     }
                     .disabled(amount.isEmpty)
-                    NavigationLink(destination: ChooseProductCategoryView()){
+                    NavigationLink(destination: ChooseProductFormView()){
                         Text("Skip")
                             .font(.headline)
                             .foregroundColor(.white)
